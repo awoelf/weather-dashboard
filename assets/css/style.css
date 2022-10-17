@@ -1,0 +1,31 @@
+:root {
+    --header-font: "Barlow", sans-serif;
+    --font: "Source Sans Pro", sans-serif;
+    --dark-blue: #1C2541;
+    --light-blue: #53B3CB;
+    --beige: #E8EFDF;
+
+}
+
+body {
+    background-color: var(--beige);
+}
+
+h1 {
+    font-family: var(--header-font);
+    color: var(--beige);
+}
+
+h2, h3 {
+    font-family: var(--header-font);
+    color: var(--dark-blue);
+}
+
+input, button, p {
+    font-family: var(--font);
+    color: var(--dark-blue);
+}
+
+header .container-fluid {
+    background: linear-gradient(90deg, var(--dark-blue), var(--light-blue));
+}

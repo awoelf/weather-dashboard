@@ -14,12 +14,67 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow&family=Source+Sans+Pro&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>Weather Dashboard</title>
   </head>
   <body>
+    <header class="mb-3">
+      <div class="container-fluid header">
+        <h1 class="my-0 py-3 text-center display-4">Weather Dashboard</h1>
+      </div>
+    </header>
+    <main class="container-fluid">
+      <div class="row">
+        <div class="col-3 bg-primary">
+          <div>
+            <h2>Search for a city</h2>
+          </div>
+          <div class="input-group py-3 border-bottom">
+            <input type="text" class="form-control" placeholder="City name" />
+            <button class="btn btn-secondary" type="button">Search</button>
+          </div>
+          <div id="city-history"></div>
+        </div>
+        <div class="col-9 bg-secondary">
+          <div class="col p-0">
+            <div class="container p-0 m-0">
+              <div id="current">
+                <div class="row d-flex align-items-center">
+                  <h2 class="m-0" id="city-name"></h2>
+                  <img id="weather-icon" />
+                </div>
+
+                <div class="row d-flex justify-content-around">
+                  <p id="current-temp" class="d-flex align-items-center">
+                    <span class="material-symbols-outlined">thermometer</span>
+                  </p>
+                  <p id="current-wind" class="d-flex align-items-center">
+                    <span class="material-symbols-outlined">air</span>
+                  </p>
+                  <p id="current-humid" class="d-flex align-items-center">
+                    <span class="material-symbols-outlined">water_drop</span>
+                  </p>
+                </div>
+              </div>
+              <div>
+                <h4>5-Day Forecast</h4>
+                <div
+                  id="forecast"
+                  class="row d-flex justify-content-around"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
     <script src="assets/js/script.js"></script>
   </body>
 </html>
