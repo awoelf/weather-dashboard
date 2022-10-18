@@ -2,7 +2,8 @@
 async function getWeather(cityName) {
   const API_KEY = `adb34fa4c27943beb2b3ebc75e92ec06`;
   const COORDS_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`;
-  fetch(COORDS_URL, {
+  // API call for getting coordinates from city name
+  fetch(COORDS_URL, { 
     method: "GET",
   })
     .then((response) => {
@@ -15,6 +16,7 @@ async function getWeather(cityName) {
       let lat = data[0].lat;
       let lon = data[0].lon;
       const WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=imperial`;
+      // API call for getting current weather conditions for searched city
       fetch(WEATHER_URL, {
         method: "GET",
       })
@@ -28,6 +30,7 @@ async function getWeather(cityName) {
           currentWeather(data);
         });
       const FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=imperial`;
+      // API call for the 5-day forecast for searched city
       fetch(FORECAST_URL, {
         method: "GET",
       })
@@ -76,6 +79,7 @@ let currentWeather = (data) => {
 let createForecast = (data) => {
   $("#forecast-title").text("5-Day Forecast");
   $("#forecast").empty();
+  // Parse through 5-day forecast hourly results to get conditions every 5 days
   for (let i = 5, j = 1; i < 38; i += 8, j++) {
     $("#forecast").append(
       $("<div>")
@@ -130,6 +134,7 @@ let createForecast = (data) => {
   $(".forecast-detail").addClass("d-flex align-items-center ml-1");
 };
 
+// Adds history buttons when the user searches a city
 let addHistory = (cityName) => {
   $("#city-history")
     .children()
@@ -147,6 +152,7 @@ let addHistory = (cityName) => {
   localStorage.setItem(`${cityName.replace(/\s/g, "").toLowerCase()}`, `${cityName}`);
 };
 
+// loads the cities stored in local storage
 let loadHistory = () => {
   for (let i = 0; i < localStorage.length; i++) {
     console.log(localStorage.key(i))
@@ -156,12 +162,14 @@ let loadHistory = () => {
 
 loadHistory();
 
+// Search button event listener
 $("#search-btn").on("click", function (event) {
   event.preventDefault();
   getWeather(`${$("#search-bar").val()}`);
   addHistory(`${$("#search-bar").val()}`);
 });
 
+// Search history event listener
 $(document).on("click", ".history-btn", function (event) {
   event.preventDefault();
   console.log(`${this.id}`);
