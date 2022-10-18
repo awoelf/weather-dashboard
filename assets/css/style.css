@@ -2,8 +2,10 @@
     --header-font: "Barlow", sans-serif;
     --font: "Source Sans Pro", sans-serif;
     --dark-blue: #1C2541;
-    --light-blue: #53B3CB;
-    --beige: #E8EFDF;
+    --light-blue: #51a4b9;
+    --beige: #c0d7cc;
+    --whiteish: #eff8f3;
+    --button-hover: #469fb5;
 
 }
 
@@ -13,7 +15,7 @@ body {
 
 h1 {
     font-family: var(--header-font);
-    color: var(--beige);
+    color: var(--whiteish);
 }
 
 h2, h3 {
@@ -21,11 +23,44 @@ h2, h3 {
     color: var(--dark-blue);
 }
 
-input, button, p {
+input, p {
     font-family: var(--font);
     color: var(--dark-blue);
+    font-size: large;
+}
+
+button {
+    font-family: var(--font);
+    color: var(--beige) !important;
+    background-color: var(--light-blue) !important;
+}
+
+button:hover {
+    background-color: var(--button-hover) !important;
 }
 
 header .container-fluid {
     background: linear-gradient(90deg, var(--dark-blue), var(--light-blue));
 }
+
+.border-bottom {
+    border-color: var(--dark-blue) !important;
+}
+
+.forecast-card {
+    background-color: var(--light-blue);
+}
+
+#current {
+    background-color: var(--light-blue);
+
+}
+
+@media (max-width: 768px) {
+    .forecast-card {
+      margin-top: 1rem;
+    }
+    #current * :not(#city-name){
+        font-size: large !important;
+    }
+  }
