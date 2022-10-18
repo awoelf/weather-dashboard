@@ -136,16 +136,25 @@ let addHistory = (cityName) => {
     .remove(`#${cityName.replace(/\s/g, "").toLowerCase()}`);
   if ($("#city-history").children(".history-btn").length === 10) {
     $("#city-history").children().remove(":last");
+    localStorage.removeItem(localStorage.key(0));
   }
   $("#city-history").prepend(
     $("<button>")
       .attr("id", `${cityName.replace(/\s/g, "").toLowerCase()}`)
-      .addClass("btn btn-lg history-btn col-md-12 col-sm-2")
+      .addClass("btn btn-lg history-btn btn-block col-md-12 col-sm-2")
       .text(`${cityName}`)
   );
+  localStorage.setItem(`${cityName.replace(/\s/g, "").toLowerCase()}`, `${cityName}`);
 };
 
-// getWeather("Austin");
+let loadHistory = () => {
+  for (let i = 0; i < localStorage.length; i++) {
+    console.log(localStorage.key(i))
+    addHistory(localStorage.getItem(localStorage.key(i)));
+  }
+} 
+
+loadHistory();
 
 $("#search-btn").on("click", function (event) {
   event.preventDefault();
@@ -158,4 +167,3 @@ $(document).on("click", ".history-btn", function (event) {
   console.log(`${this.id}`);
   getWeather(`${this.id}`);
 });
-getWeather("Busan");
